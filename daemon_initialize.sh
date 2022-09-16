@@ -56,10 +56,10 @@ if [[ ! -f /$PATH_BIN/.$COIN/$COIN-node/daemon/version.json ]]; then
   zip_file="${DOWN_URL##*/}"
   jq -n --arg version $VERSION  '{"version":"\($version)"}' > /$PATH_BIN/.$COIN/$COIN-node/daemon/version.json
   cd /$PATH_BIN/.$COIN/$COIN-node/daemon/tmp
-  targz_file=$(sudo find ./"$COIN"* -type f -name '*.tar.gz' 2>/dev/null)
+  targz_file=$(find ./"$COIN"* -type f -name '*.tar.gz' 2>/dev/null)
   extract_file ${targz_file}
-  mv -f $(sudo find . -type d -name "$ARCHIVE_REGEX" 2>/dev/null)/bin/* /$PATH_BIN/.$COIN/$COIN-node/daemon/
-  sudo chmod +x /$PATH_BIN/.$COIN/$COIN-node/daemon/* > /dev/null 2>&1
+  mv -f $(find . -type d -name "$ARCHIVE_REGEX" 2>/dev/null)/bin/* /$PATH_BIN/.$COIN/$COIN-node/daemon/
+  chmod +x /$PATH_BIN/.$COIN/$COIN-node/daemon/* > /dev/null 2>&1
   rm -rf /$PATH_BIN/.$COIN/$COIN-node/daemon/tmp > /dev/null 2>&1
 else
   echo -e "${ARROW} ${YELLOW}Checking daemon update...${NC}"
@@ -72,10 +72,10 @@ else
     rm /$PATH_BIN/.$COIN/$COIN-node/daemon/version.json > /dev/null 2>&1
     jq -n --arg version $VERSION  '{"version":"\($version)"}' > /$PATH_BIN/.$COIN/$COIN-node/daemon/version.json
     cd /$PATH_BIN/.$COIN/$COIN-node/daemon/bin/tmp
-    targz_file=$(sudo find ./"$COIN"* -type f -name '*.tar.gz' 2>/dev/null)
+    targz_file=$(find ./"$COIN"* -type f -name '*.tar.gz' 2>/dev/null)
     extract_file ${targz_file}
-    mv -f $(sudo find . -type d -name "$ARCHIVE_REGEX" 2>/dev/null)/bin/* /$PATH_BIN/.$COIN/$COIN-node/daemon/
-    sudo chmod +x /$PATH_BIN/.$COIN/$COIN-node/daemon/* > /dev/null 2>&1
+    mv -f $(find . -type d -name "$ARCHIVE_REGEX" 2>/dev/null)/bin/* /$PATH_BIN/.$COIN/$COIN-node/daemon/
+    chmod +x /$PATH_BIN/.$COIN/$COIN-node/daemon/* > /dev/null 2>&1
     rm -rf /$PATH_BIN/.$COIN/$COIN-node/daemon/tmp > /dev/null 2>&1
   fi
 fi
