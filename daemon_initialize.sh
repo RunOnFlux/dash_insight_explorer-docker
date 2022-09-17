@@ -53,7 +53,6 @@ if [[ ! -f /$PATH_BIN/.$COIN/$COIN-node/daemon/version.json ]]; then
   echo -e "${ARROW} ${YELLOW}Installing $COIN daemon...${NC}"
   mkdir -p /$PATH_BIN/.$COIN/$COIN-node/daemon/tmp > /dev/null 2>&1
   wget --tries=5 $DOWN_URL -P /$PATH_BIN/.$COIN/$COIN-node/daemon/tmp > /dev/null 2>&1
-  zip_file="${DOWN_URL##*/}"
   jq -n --arg version $VERSION  '{"version":"\($version)"}' > /$PATH_BIN/.$COIN/$COIN-node/daemon/version.json
   cd /$PATH_BIN/.$COIN/$COIN-node/daemon/tmp
   targz_file=$(find ./"$COIN"* -type f -name '*.tar.gz' 2>/dev/null)
@@ -68,7 +67,6 @@ else
   if [[ "$VERSION" != "" && "$local_version" != "$VERSION" ]]; then
     echo -e "${ARROW} ${YELLOW}New version detected: ${GREEN}$VERSION ${NC}"
     wget --tries=5 $DOWN_URL -P /$PATH_BIN/.$COIN/$COIN-node/daemon/tmp > /dev/null 2>&1
-    targz_file="${DOWN_URL##*/}"
     rm /$PATH_BIN/.$COIN/$COIN-node/daemon/version.json > /dev/null 2>&1
     jq -n --arg version $VERSION  '{"version":"\($version)"}' > /$PATH_BIN/.$COIN/$COIN-node/daemon/version.json
     cd /$PATH_BIN/.$COIN/$COIN-node/daemon/bin/tmp
@@ -79,7 +77,6 @@ else
     rm -rf /$PATH_BIN/.$COIN/$COIN-node/daemon/tmp > /dev/null 2>&1
   fi
 fi
-
 }
 
 cd /$PATH_BIN/
@@ -109,7 +106,6 @@ else
   else
     echo -e "${ARROW} ${CYAN}DB_COMPONENT_NAME as host is ${GREEN}${DB_COMPONENT_NAME}${NC}"
   fi
-
   rm /$PATH_BIN/.$COIN/$COIN-node/$COIN-node.json > /dev/null 2>&1
 
 cat << EOF > /$PATH_BIN/.$COIN/$COIN-node/$COIN-node.json
@@ -147,11 +143,7 @@ cat << EOF > /$PATH_BIN/.$COIN/$COIN-node/$COIN-node.json
       "sendTxLog": "./data/pushtx.log",
       "spawn": {
         "datadir": "./data",
-        "exec": "/$PATH_BIN/.$COIN/$COIN-node/daemon/$DAEMON_BIN",
-        "rpcqueue": 1000,
-        "rpcport": ${RPC_PORT},
-        "zmqpubrawtx": "tcp://127.0.0.1:28332",
-        "zmqpubhashblock": "tcp://127.0.0.1:28332"
+        "exec": "/$PATH_BIN/.$COIN/$COIN-node/daemon/$DAEMON_BIN"
       }
     }
   }
@@ -168,7 +160,6 @@ server=1
 whitelist=127.0.0.1
 txindex=1
 addressindex=1
-assetindex=1
 timestampindex=1
 spentindex=1
 zmqpubrawtx=tcp://127.0.0.1:28332
@@ -178,12 +169,7 @@ rpcport=$RPC_PORT
 rpcallowip=127.0.0.1
 rpcuser=$RPCUSER
 rpcpassword=$PASSWORD
-mempoolexpiry=72
-rpcworkqueue=1100
-maxmempool=2000
-dbcache=1000
-maxtxfee=1.0
-dbmaxfilesize=64
+rpcworkqueue=1000
 EOF
 ../bin/dashcore-node install "$INSIGHT_API" > /dev/null 2>&1
 ../bin/dashcore-node install "$INSIGHT_UI" > /dev/null 2>&1
