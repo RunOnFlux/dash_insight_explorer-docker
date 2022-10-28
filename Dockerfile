@@ -10,4 +10,4 @@ VOLUME /root/.dashcore
 EXPOSE 3001/tcp
 RUN chmod 755 daemon_initialize.sh check-health.sh
 HEALTHCHECK --start-period=15m --interval=2m --retries=5 --timeout=15s CMD ./check-health.sh
-CMD ./daemon_initialize.sh
+CMD ["/bin/bash","./daemon_initialize.sh"]
