@@ -125,11 +125,11 @@ cat << EOF > /$PATH_BIN/.$COIN/$COIN-node/$COIN-node.json
       "enableSocketRPC": true,
       "disableCors": true
     },
-    "insight-ui": {
+    "${INSIGHT_UI}": {
       "routePrefix": "",
       "apiPrefix": "api"
     },
-    "insight-api": {
+    "${INSIGHT_API}": {
       "routePrefix": "api",
       "db": {
         "host": "${DB_COMPONENT_NAME}",
