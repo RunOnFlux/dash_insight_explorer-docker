@@ -5,6 +5,6 @@ if ! egrep -o "^[0-9]+$" <<< "$CURRENT_NODE_HEIGHT" &>/dev/null; then
   echo "Daemon not working correct..."
   exit 1
 else
-  curl -sf  http://localhost:3001/insight-api/sync
+  curl -sf  http://localhost:3001/api/sync
   exit
 fi
