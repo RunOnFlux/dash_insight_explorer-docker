@@ -1,5 +1,6 @@
 FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND noninteractive
+ENV NODE_OPTIONS="--max_old_space_size=2048"
 
 RUN apt-get update && apt-get install -y \
     software-properties-common && \
