@@ -83,7 +83,7 @@ cd /$PATH_BIN/
 echo -e ""
 echo -e "${ARROW} ${YELLOW}Installing dependencies...${NC}"
 curl -sL https://deb.nodesource.com/setup_8.x | bash - > /dev/null 2>&1
-apt-get install -y nodejs build-essential libzmq3-dev npm git pwgen coreutils > /dev/null 2>&1
+apt-get install -y nodejs build-essential libzmq3-dev npm git pwgen > /dev/null 2>&1
 
 DDIR="/$PATH_BIN/.$COIN/$COIN-node/bin"
 if [ -d $DDIR ]; then
