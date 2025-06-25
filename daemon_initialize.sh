@@ -85,12 +85,14 @@ if [ -d $DDIR ]; then
   echo -e "${ARROW} ${YELLOW}Core node already installed...${NC}"
 else
   #core-node
+  apt update -y && apt install -y build-essential python3 g++ make > /dev/null 2>&1
+  
   mkdir -p /$PATH_BIN/.$COIN > /dev/null 2>&1
   cd /$PATH_BIN/.$COIN
   echo -e "${ARROW} ${YELLOW}Installing $COIN-node...${NC}"
   git clone $CORE_NODE_URL > /dev/null 2>&1
   cd $COIN-node
-  npm install --no-optional --loglevel verbose
+  npm install --legacy-peer-deps
   ./bin/$COIN-node create mynode
   cd mynode
   rm $COIN-node.json > /dev/null 2>&1
