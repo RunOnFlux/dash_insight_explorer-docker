@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get upgrade && apt-get install -y \
-    wget curl jq gnupg lsb-release dirmngr tar pv pwgen dirmngr tar pv bc build-essential libzmq3-dev git npm \
+    wget curl jq gnupg lsb-release dirmngr tar pv pwgen bc build-essential libzmq3-dev git npm \
     rm -rf /var/lib/apt/lists/*
 
 COPY daemon_initialize.sh /daemon_initialize.sh
