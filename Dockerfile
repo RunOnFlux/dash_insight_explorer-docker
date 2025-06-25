@@ -1,8 +1,7 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
-ENV NODE_OPTIONS="--max_old_space_size=2048"
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade && apt-get install -y \
     wget curl jq gnupg lsb-release dirmngr tar pv pwgen dirmngr tar pv bc build-essential libzmq3-dev git npm \
     rm -rf /var/lib/apt/lists/*
 
