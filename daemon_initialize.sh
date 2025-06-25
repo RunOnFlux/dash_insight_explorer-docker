@@ -179,6 +179,7 @@ cd /$PATH_BIN/.$COIN/$COIN-node/mynode
 while true; do
 echo -e "${ARROW} ${YELLOW}Starting $COIN_NAME insight explorer...${NC}"
 echo -e ""
+sleep 300
 ../bin/$COIN-node start
 sleep 60
 done
