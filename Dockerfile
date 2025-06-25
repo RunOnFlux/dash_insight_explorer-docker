@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND noninteractive
 ENV NODE_OPTIONS="--max_old_space_size=2048"
 
