@@ -92,7 +92,8 @@ else
   echo -e "${ARROW} ${YELLOW}Installing $COIN-node...${NC}"
   git clone $CORE_NODE_URL > /dev/null 2>&1
   cd $COIN-node
-  npm install --legacy-peer-deps
+  sed -i "s|var npm = spawn('npm', \['install'\], {cwd: absConfigDir});|var npm = spawn('npm', ['install', '--build-from-source', '--loglevel', 'verbose'], { cwd: absConfigDir, env: Object.assign({}, process.env, { npm_config_build_from_source: 'true', npm_config_loglevel: 'verbose' }) });|" lib/scaffold/create.js
+  npm install
   ./bin/$COIN-node create mynode
   cd mynode
   rm $COIN-node.json > /dev/null 2>&1
