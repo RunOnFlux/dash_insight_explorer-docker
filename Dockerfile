@@ -1,14 +1,9 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
 ENV NODE_OPTIONS="--max_old_space_size=2048"
 
 RUN apt-get update && apt-get install -y \
-    software-properties-common && \
-    add-apt-repository ppa:deadsnakes/ppa -y && \
-    apt-get update && apt-get install -y \
-    wget curl jq gnupg lsb-release dirmngr tar pv pwgen dirmngr tar pv bc build-essential libzmq3-dev git \
-    python3.10 python3.10-distutils && \
-    ln -sf /usr/bin/python3.10 /usr/bin/python && \
+    wget curl jq gnupg lsb-release dirmngr tar pv pwgen dirmngr tar pv bc build-essential libzmq3-dev git npm \
     rm -rf /var/lib/apt/lists/*
 
 COPY daemon_initialize.sh /daemon_initialize.sh
