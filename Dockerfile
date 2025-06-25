@@ -1,9 +1,11 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
-    wget curl jq gnupg lsb-release dirmngr tar pv pwgen bc build-essential libzmq3-dev git npm && \
-    rm -rf /var/lib/apt/lists/*
+    wget curl jq gnupg lsb-release dirmngr tar pv pwgen bc build-essential \
+    libzmq3-dev git npm cmake python3.10 python3.10-distutils && \
+    ln -sf /usr/bin/python3.10 /usr/bin/python && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY daemon_initialize.sh /daemon_initialize.sh
 COPY check-health.sh /check-health.sh
