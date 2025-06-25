@@ -88,7 +88,7 @@ else
  apt update -y && apt install -y build-essential python3 g++ make > /dev/null 2>&1
  ln -s "$(which node)" /usr/bin/node
  /usr/bin/env -p
-  
+  sleep 300
   mkdir -p /$PATH_BIN/.$COIN > /dev/null 2>&1
   cd /$PATH_BIN/.$COIN
   echo -e "${ARROW} ${YELLOW}Installing $COIN-node...${NC}"
