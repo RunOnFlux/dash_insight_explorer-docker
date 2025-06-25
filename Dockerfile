@@ -1,14 +1,12 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -y && apt-get install -y \
-    software-properties-common curl wget gnupg lsb-release dirmngr && \
-    add-apt-repository ppa:deadsnakes/ppa -y && \
-    apt-get update -y && apt-get install -y \
-    jq tar pv pwgen bc build-essential libzmq3-dev git npm cmake \
-    python3.10 python3.10-distutils && \
-    ln -sf /usr/bin/python3.10 /usr/bin/python && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN apt update -y && apt install -y \
+  curl build-essential python3 python3-pip python3-distutils \
+  git cmake jq tar pv pwgen bc libzmq3-dev \
+  && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+  && apt-get install -y nodejs
 
 COPY daemon_initialize.sh /daemon_initialize.sh
 COPY check-health.sh /check-health.sh
