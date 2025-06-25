@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install required dependencies and Node.js
 RUN apt update -y && apt install -y \
   curl build-essential python3 python3-pip python3-distutils \
-  git cmake jq tar pv pwgen bc libzmq3-dev npm \
+  git cmake jq tar pv pwgen bc libzmq3-dev \
   && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
   && apt-get install -y nodejs \
   && echo "Node.js and npm installed at:" \
