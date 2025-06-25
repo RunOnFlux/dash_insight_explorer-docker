@@ -1,9 +1,12 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
-    wget curl jq gnupg lsb-release dirmngr tar pv pwgen bc build-essential \
-    libzmq3-dev git npm cmake python3.10 python3.10-distutils && \
+RUN apt-get update -y && apt-get install -y \
+    software-properties-common curl wget gnupg lsb-release dirmngr && \
+    add-apt-repository ppa:deadsnakes/ppa -y && \
+    apt-get update -y && apt-get install -y \
+    jq tar pv pwgen bc build-essential libzmq3-dev git npm cmake \
+    python3.10 python3.10-distutils && \
     ln -sf /usr/bin/python3.10 /usr/bin/python && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
