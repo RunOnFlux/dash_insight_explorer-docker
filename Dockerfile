@@ -3,21 +3,23 @@ FROM ubuntu:22.04
 # Set non-interactive frontend for apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install required dependencies and Node.js
+# Install required dependencies
 RUN apt update -y && apt install -y \
   curl build-essential python3 python3-pip python3-distutils \
   git cmake jq tar pv pwgen bc libzmq3-dev \
-  && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-  && apt-get install -y nodejs \
-  && echo "Node.js and npm installed at:" \
-  && which node \
-  && which npm \
-  && node -v \
-  && npm -v \
-  && echo "Ensure Node.js is in the PATH"
+  && apt-get install -y npm \
+  && echo "Dependencies installed"
 
-# Add Node.js to PATH explicitly (if it's not in /usr/bin/)
-ENV PATH=$PATH:/usr/local/bin
+# Install NVM (Node Version Manager)
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
+# Install Node.js via NVM and ensure it is available in the path
+RUN export NVM_DIR="$HOME/.nvm" && \
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
+    nvm install 18 && \
+    nvm use 18 && \
+    nvm alias default 18 && \
+    echo "Node.js and npm installed using NVM"
 
 # Copy initialization and health check scripts into the container
 COPY daemon_initialize.sh /daemon_initialize.sh
