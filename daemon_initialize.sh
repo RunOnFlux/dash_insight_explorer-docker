@@ -168,8 +168,8 @@ rpcuser=$RPCUSER
 rpcpassword=$PASSWORD
 rpcworkqueue=1000
 EOF
-../bin/dashcore-node install "$INSIGHT_API" > /dev/null 2>&1
-../bin/dashcore-node install "$INSIGHT_UI" > /dev/null 2>&1
+../bin/dashcore-node install "$INSIGHT_API"
+../bin/dashcore-node install "$INSIGHT_UI"
 fi
 update_daemon
 cd /$PATH_BIN/.$COIN/$COIN-node/mynode
