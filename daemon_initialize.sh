@@ -85,10 +85,8 @@ if [ -d $DDIR ]; then
   echo -e "${ARROW} ${YELLOW}Core node already installed...${NC}"
 else
   #core-node
-  #apt update -y && apt install -y build-essential python3 g++ make > /dev/null 2>&1
-
-  curl -sL https://deb.nodesource.com/setup_8.x | bash - > /dev/null 2>&1
-  apt-get install -y nodejs build-essential libzmq3-dev npm git pwgen coreutils > /dev/null 2>&1
+ apt update -y && apt install -y build-essential python3 g++ make > /dev/null 2>&1
+ ln -s "$(which node)" /usr/bin/node
   
   mkdir -p /$PATH_BIN/.$COIN > /dev/null 2>&1
   cd /$PATH_BIN/.$COIN
