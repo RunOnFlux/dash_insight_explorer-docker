@@ -1,5 +1,4 @@
-
-#!/usr/bin/env bash
+#!/bin/bash
 #color codes
 RED='\033[1;31m'
 YELLOW='\033[1;33m'
@@ -33,6 +32,8 @@ RPC_PORT="9988"
 
 DOWN_URL=$(curl --silent "https://api.github.com/repos/$PROJ_NAME/releases/latest" | jq -r '.assets[] | .browser_download_url' | grep -e "$PACKAGE")
 VERSION=$(curl --silent "https://api.github.com/repos/$PROJ_NAME/releases/latest" | jq -r .tag_name)
+
+export PATH=/usr/bin:$PATH
 
 function extract_file() {
     local extraction_dir="./"
@@ -168,16 +169,14 @@ rpcuser=$RPCUSER
 rpcpassword=$PASSWORD
 rpcworkqueue=1000
 EOF
-../bin/dashcore-node install "$INSIGHT_API" --build-from-source
-sleep 500
-../bin/dashcore-node install "$INSIGHT_UI" --build-from-source
+../bin/dashcore-node install "$INSIGHT_API"
+../bin/dashcore-node install "$INSIGHT_UI"
 fi
 update_daemon
 cd /$PATH_BIN/.$COIN/$COIN-node/mynode
 while true; do
 echo -e "${ARROW} ${YELLOW}Starting $COIN_NAME insight explorer...${NC}"
 echo -e ""
-sleep 500
-eval "../bin/dashcore-node start"
+../bin/dashcore-node start
 sleep 60
 done
