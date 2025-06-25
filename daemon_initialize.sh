@@ -90,7 +90,7 @@ else
   echo -e "${ARROW} ${YELLOW}Installing $COIN-node...${NC}"
   git clone $CORE_NODE_URL > /dev/null 2>&1
   cd $COIN-node
-  npm install --no-optional --legacy-peer-deps
+  npm install
   ./bin/$COIN-node create mynode
   cd mynode
   rm $COIN-node.json > /dev/null 2>&1
