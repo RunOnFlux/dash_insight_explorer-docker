@@ -170,8 +170,6 @@ EOF
 
 ../bin/dashcore-node install "$INSIGHT_API"
 ../bin/dashcore-node install "$INSIGHT_UI"
-
-sleep  600
 update_daemon
 
 while true; do
