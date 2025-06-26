@@ -173,11 +173,11 @@ EOF
 ../bin/dashcore-node install "$INSIGHT_UI"
 fi
 update_daemon
-sleep 100
+sleep  300
 cd /$PATH_BIN/.$COIN/$COIN-node/mynode
 while true; do
 echo -e "${ARROW} ${YELLOW}Starting $COIN_NAME insight explorer...${NC}"
 echo -e ""
-node ../bin/$COIN-node start
+../bin/$COIN-node start
 sleep 120
 done
