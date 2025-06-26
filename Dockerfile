@@ -11,6 +11,9 @@ RUN apt-get update -y && apt-get install -y \
   && apt-get clean \
   && echo "Dependencies and Node.js installed"
 
+# Set PATH to include /usr/bin explicitly, ensuring Node.js and npm are found
+ENV PATH=/usr/bin:$PATH
+
 # Verify Node.js version
 RUN node --version && npm --version
 
@@ -30,5 +33,5 @@ RUN chmod 755 /daemon_initialize.sh /check-health.sh
 # Set health check command to monitor the health of the container
 HEALTHCHECK --start-period=15m --interval=2m --retries=5 --timeout=15s CMD /check-health.sh
 
-# Default command to run the daemon initialization script
-CMD ["/bin/bash", "/daemon_initialize.sh"]
+# Use ENTRYPOINT to run the script in a new shell, ensuring environment variables are available
+ENTRYPOINT ["/bin/bash", "-c", "/daemon_initialize.sh"]
