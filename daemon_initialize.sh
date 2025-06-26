@@ -170,7 +170,9 @@ rpcpassword=$PASSWORD
 rpcworkqueue=1000
 EOF
 
-sleep 30
+cd /$PATH_BIN/.$COIN/$COIN-node/mynode
+sleep 60
+echo -e "Downloading daemon..."
 update_daemon
 sleep 200
 ../bin/dashcore-node install "$INSIGHT_API"
