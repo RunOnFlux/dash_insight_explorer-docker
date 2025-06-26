@@ -170,9 +170,10 @@ rpcpassword=$PASSWORD
 rpcworkqueue=1000
 EOF
 
-
-sleep 60
+echo -e "$DOWN_URL"
+echo -e "$VERSION"
 echo -e "Downloading daemon..."
+sleep 120
 update_daemon
 sleep 200
 cd /$PATH_BIN/.$COIN/$COIN-node/mynode
