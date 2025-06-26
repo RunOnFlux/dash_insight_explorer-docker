@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
 # Set non-interactive frontend for apt
 ENV DEBIAN_FRONTEND=noninteractive
