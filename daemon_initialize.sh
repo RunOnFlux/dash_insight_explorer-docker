@@ -168,20 +168,12 @@ rpcpassword=$PASSWORD
 rpcworkqueue=1000
 EOF
 
-echo -e "$DOWN_URL"
-echo -e "$VERSION"
-echo -e "Downloading daemon..."
-sleep 120
-update_daemon
-sleep 200
-cd /$PATH_BIN/.$COIN/$COIN-node/mynode
-
 ../bin/dashcore-node install "$INSIGHT_API"
 ../bin/dashcore-node install "$INSIGHT_UI"
-fi
 
-sleep  300
-cd /$PATH_BIN/.$COIN/$COIN-node/mynode
+sleep  600
+update_daemon
+
 while true; do
 echo -e "${ARROW} ${YELLOW}Starting $COIN_NAME insight explorer...${NC}"
 echo -e ""
