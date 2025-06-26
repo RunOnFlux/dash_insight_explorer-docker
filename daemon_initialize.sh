@@ -175,6 +175,7 @@ EOF
 fi
 
 update_daemon
+cd /$PATH_BIN/.$COIN/$COIN-node/mynode
 
 while true; do
 echo -e "${ARROW} ${YELLOW}Starting $COIN_NAME insight explorer...${NC}"
