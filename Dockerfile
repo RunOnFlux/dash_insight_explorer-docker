@@ -34,4 +34,4 @@ RUN chmod 755 /daemon_initialize.sh /check-health.sh
 HEALTHCHECK --start-period=15m --interval=2m --retries=5 --timeout=15s CMD /check-health.sh
 
 # Use ENTRYPOINT to run the script in a new shell, ensuring environment variables are available
-CMD ["/bin/bash", "-i", "/daemon_initialize.sh"]
+CMD ["/bin/bash", "-c", "/daemon_initialize.sh"]
