@@ -86,7 +86,7 @@ if [ -d $DDIR ]; then
   echo -e "${ARROW} ${YELLOW}Core node already installed...${NC}"
 else
   #core-node
-  apt update -y && apt install -y build-essential python3 g++ make > /dev/null 2>&1
+  ## apt update -y && apt install -y build-essential python3 g++ make > /dev/null 2>&1
   mkdir -p /$PATH_BIN/.$COIN > /dev/null 2>&1
   cd /$PATH_BIN/.$COIN
   echo -e "${ARROW} ${YELLOW}Installing $COIN-node...${NC}"
@@ -173,10 +173,11 @@ EOF
 ../bin/dashcore-node install "$INSIGHT_UI"
 fi
 update_daemon
+sleep 100
 cd /$PATH_BIN/.$COIN/$COIN-node/mynode
 while true; do
 echo -e "${ARROW} ${YELLOW}Starting $COIN_NAME insight explorer...${NC}"
 echo -e ""
-bash -i -c "../bin/$COIN-node start"
-sleep 60
+../bin/$COIN-node start
+sleep 120
 done
