@@ -55,6 +55,7 @@ if [[ ! -f /$PATH_BIN/.$COIN/$COIN-node/daemon/version.json ]]; then
   jq -n --arg version $VERSION  '{"version":"\($version)"}' > /$PATH_BIN/.$COIN/$COIN-node/daemon/version.json
   cd /$PATH_BIN/.$COIN/$COIN-node/daemon/tmp
   targz_file=$(find ./"$COIN"* -type f -name '*.tar.gz' 2>/dev/null)
+  echo -e "${ARROW} ${YELLOW}Unpacking $targz_file ${NC}"
   extract_file ${targz_file}
   mv -f $(find . -type d -name "$ARCHIVE_REGEX" 2>/dev/null)/bin/* /$PATH_BIN/.$COIN/$COIN-node/daemon/
   chmod +x /$PATH_BIN/.$COIN/$COIN-node/daemon/* > /dev/null 2>&1
@@ -70,6 +71,7 @@ else
     jq -n --arg version $VERSION  '{"version":"\($version)"}' > /$PATH_BIN/.$COIN/$COIN-node/daemon/version.json
     cd /$PATH_BIN/.$COIN/$COIN-node/daemon/bin/tmp
     targz_file=$(find ./"$COIN"* -type f -name '*.tar.gz' 2>/dev/null)
+    echo -e "${ARROW} ${YELLOW}Unpacking $targz_file ${NC}"
     extract_file ${targz_file}
     mv -f $(find . -type d -name "$ARCHIVE_REGEX" 2>/dev/null)/bin/* /$PATH_BIN/.$COIN/$COIN-node/daemon/
     chmod +x /$PATH_BIN/.$COIN/$COIN-node/daemon/* > /dev/null 2>&1
