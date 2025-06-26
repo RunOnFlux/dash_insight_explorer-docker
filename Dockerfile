@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install required dependencies, including Node.js and npm
 RUN apt-get update -y && apt-get install -y \
   curl build-essential python3 python3-pip python3-distutils \
-  git cmake jq tar pv wget pwgen bc libzmq3-dev \
+  git cmake jq tar unzip pv wget pwgen bc libzmq3-dev \
   nodejs npm \
   && apt-get clean \
   && echo "Dependencies and Node.js installed"
