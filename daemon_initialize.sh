@@ -172,6 +172,8 @@ EOF
 
 ../bin/dashcore-node install "$INSIGHT_API"
 ../bin/dashcore-node install "$INSIGHT_UI"
+fi
+
 update_daemon
 
 while true; do
