@@ -33,8 +33,6 @@ RPC_PORT="9988"
 DOWN_URL=$(curl --silent "https://api.github.com/repos/$PROJ_NAME/releases/latest" | jq -r '.assets[] | .browser_download_url' | grep -e "$PACKAGE")
 VERSION=$(curl --silent "https://api.github.com/repos/$PROJ_NAME/releases/latest" | jq -r .tag_name)
 
-export PATH=/usr/bin:$PATH
-
 function extract_file() {
     local extraction_dir="./"
     if [ -n "$2" ]; then
